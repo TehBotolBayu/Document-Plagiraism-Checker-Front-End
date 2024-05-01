@@ -63,7 +63,7 @@ export default function Home() {
       formData.append('file', file);
       formData.append('files', files);
       isLoad(true);
-      const response = await fetch('http://16.78.32.38:8090/', {
+      const response = await fetch('https://16.78.32.38:8090/', {
         method: 'POST',
         body: formData
       });
