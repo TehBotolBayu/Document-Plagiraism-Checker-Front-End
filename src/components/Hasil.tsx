@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ResProvider, useResContext } from "@/context/resContext";
 
 
-function Hasil({ren}) {
+function Hasil({ren}:{ren:any}) {
   // const hasil = useContext(hasilContext);
   const router = useRouter();
   const [tab, settab] = React.useState('hasil');
