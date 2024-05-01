@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useEffect, useContext, createContext } from 'react'
 import PercentageCircle from "@/components/PercentageCirlce"
@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ResProvider, useResContext } from "@/context/resContext";
 
 
-function page() {
+function Hasil() {
   // const hasil = useContext(hasilContext);
   const router = useRouter();
   const [tab, settab] = React.useState('hasil');
@@ -114,4 +114,4 @@ function page() {
   )
 }
 
-export default page
+export default Hasil
