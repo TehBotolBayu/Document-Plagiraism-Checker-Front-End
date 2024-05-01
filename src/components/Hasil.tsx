@@ -1,9 +1,10 @@
 'use client'
 
 import React, { useEffect, useContext, createContext } from 'react'
-import PercentageCircle from "./PercentageCirlce"
+import PercentageCircle from "@/components/PercentageCirlce"
 import { useRouter } from 'next/navigation';
 import { ResProvider, useResContext } from "@/context/resContext";
+
 
 function Hasil() {
   // const hasil = useContext(hasilContext);
@@ -11,6 +12,7 @@ function Hasil() {
   const [tab, settab] = React.useState('hasil');
 
   const {value, setValue} = useResContext();
+
 
   // useEffect(() => {
   //   // console.log(hasil);
@@ -26,24 +28,26 @@ function Hasil() {
       <tr>
         <td className='font-semibold'>Nama</td>
         <td>{
-            (dokumen == 'dokumen 1') ? 
-            value[0].filenamea : value[1].filenameb
-        }</td>
+          (dokumen == "dokumen 1")?
+          value[0].filenamea:value[1].filenameb
+      }</td>
       </tr>
       <tr>
         <td className='font-semibold'>Ukuran</td>
         <td>{
-            (dokumen == 'dokumen 1') ? 
-            value[0].sizea : value[1].sizeb
-        } kb</td>
+          (dokumen == "dokumen 1")?
+          value[0].sizea:value[1].sizeb
+      } kb</td>
       </tr>
       <tr>
         <td className='font-semibold'>Format</td>
-        <td>{
-            (dokumen == 'dokumen 1') ? 
-            value[0].filenamea.substring(value[0].filenamea.lastIndexOf('.') + 1) : 
-            value[1].filenameb.substring(value[1].filenameb.lastIndexOf('.') + 1)
-        }</td>
+        <td>
+        {
+          (dokumen == "dokumen 1")?
+          value[0].filenamea.slice((value[0].filenamea.lastIndexOf(".") - 1 >>> 0) + 2):
+          value[1].filenameb.slice((value[1].filenameb.lastIndexOf(".") - 1 >>> 0) + 2)
+      }
+        </td>
       </tr>
       {/* <tr>
         <td className='font-semibold'>Jumlah Kata</td>
@@ -54,15 +58,19 @@ function Hasil() {
     )
   } else if(tab == "hasil"){
     return (
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa obcaecati necessitatibus, animi quasi enim exercitationem rerum delectus, nulla minus possimus quis molestias laudantium quibusdam ab adipisci nihil sed odit ipsum distinctio esse aperiam placeat deserunt voluptas quam? Eveniet magnam minima, illum quos, quaerat alias ipsum tempore aut vero eius aliquid.</p>
+      <p className='h-[500px] overflow-scroll whitespace-wrap overflow-ellipsis'>
+        {
+        (dokumen == "dokumen 1")?
+        value[7].preprocessing1:value[8].preprocessing2
+    }
+      </p>
     )
   } else if(tab == "hash"){
     return (
-      <p>{
-        (dokumen == 'dokumen 1') ? 
-        value[3].hash1:
-        value[4].hash2
-        }</p>
+      <p className='h-[500px] overflow-scroll overflow-ellipsis'>{
+        (dokumen == "dokumen 1")?
+        value[3].hash1:value[4].hash2
+    }</p>
     )
   }
   }
@@ -70,13 +78,14 @@ function Hasil() {
   const [level, setlevel] = React.useState('Orisinil');
   const [style, setstyle] = React.useState('block white');
 
+
   useEffect(()=>{
     function colorit(){
-      let vp = parseFloat(value[2].kesamaan);
-      if(vp < 20){
+      let score = parseFloat(parseFloat(value[2].kesamaan).toFixed(2));
+      if(score < 20.0){
         setlevel('Orisinil');
         setstyle('block text-green-400')
-      } else if (vp < 70) {
+      } else if (score < 70.0) {
         setlevel('Plagiat Sedang');
         setstyle('block text-yellow-600')
       } else {
@@ -92,22 +101,22 @@ function Hasil() {
     <div className='px-5 py-5'>
         <div className='p-5 flex flex-col md:flex-row justify-center items-center  rounded-lg bg-medb w-full h-[250px] mb-5 md:max-w-screen-md md:mx-auto'>
             <div className='mb-2 md:mr-5'>
-              <PercentageCircle value={parseInt(value[2].kesamaan)} />
+              <PercentageCircle value={parseFloat(parseFloat(value[2].kesamaan).toFixed(2))} />
             </div>
-            <div className='text-center md:text-left text-white font-semibold'>Dokumen anda terdeteksi <span className={style}>{level}</span>
+            <div className='text-center md:text-left text-white font-semibold'>Dokumen anda terdeteksi {value[1].kesamaan}<span className={style}>{level}</span>
               <button onClick={() => router.push("/")} className='bg-white text-darkb mt-2 block'>Bandingkan Lagi</button>
             </div>
         </div>
-        <div className='tab rounded-t-lg w-full h-[50px] border flex '>
+        <div className='tab rounded-t-lg w-full h-[50px] border flex'>
             <div onClick={()=>settab('hasil')}>Perbandingan</div>
             <div onClick={()=>settab('rincian')}>File</div>
             <div onClick={()=>settab('hash')}>Hash</div>
         </div>
         <div className='md:flex text-cmp rounded-b-lg w-full border'>
-          <div><span className='font-bold block my-2'>Nama File 1</span>
+          <div><span className='font-bold block my-2'>{value[0].filenamea}</span>
             {tabRender('dokumen 1')}
           </div>
-          <div><span className='font-bold block my-2'>Nama File 2</span>
+          <div><span className='font-bold block my-2'>{value[1].filenameb}</span>
           {tabRender('dokumen 2')}
           </div>        
         </div>

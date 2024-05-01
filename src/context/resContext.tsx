@@ -8,17 +8,16 @@ import React, { createContext, useContext, useState } from 'react';
 // }
 
 type resContextType = {
-  value: Object;
-  setValue: React.Dispatch<React.SetStateAction<Object>>;
+  value: any;
+  setValue: React.Dispatch<React.SetStateAction<any>>;
 };
-
 
 const resContext = createContext<resContextType|undefined>(undefined);
 
 export const ResProvider = ({ children }:Readonly<{
   children: React.ReactNode;
 }>) => {
-  const [value, setValue] = useState<Object>([]);
+  const [value, setValue] = useState<any>([]);
   return (
     <resContext.Provider value={{ value, setValue }}>
       {children}

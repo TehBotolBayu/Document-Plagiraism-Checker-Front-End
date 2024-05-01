@@ -13,8 +13,8 @@ import { ResProvider, useResContext } from "@/context/resContext";
 // const hasilContext = createContext()
 
 export default function Home() {
-  const [file, setFile] = useState<Blob | null>(null);
-  const [files, setFiles] = useState<Blob | null>(null);
+  const [file, setFile] = useState<any>(null);
+  const [files, setFiles] = useState<any>(null);
   const [load, isLoad] = useState<boolean>(false);
 
   const router = useRouter();
@@ -80,6 +80,7 @@ export default function Home() {
         setMode("hasil");
       })
     } catch (err) {
+      if(err instanceof Error)
       console.error('Error uploading file:', err.message);
       isLoad(false)
     }
