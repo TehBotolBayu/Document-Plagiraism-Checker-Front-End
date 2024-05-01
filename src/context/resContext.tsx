@@ -7,10 +7,17 @@ import React, { createContext, useContext, useState } from 'react';
 //     data: any
 // }
 
+type resContextType = {
+  value: Object;
+  setValue: React.Dispatch<React.SetStateAction<Object>>;
+};
 
-const resContext = createContext<AppContext|undefined>(undefined);
 
-export const ResProvider = ({ children }) => {
+const resContext = createContext<resContextType|undefined>(undefined);
+
+export const ResProvider = ({ children }:Readonly<{
+  children: React.ReactNode;
+}>) => {
   const [value, setValue] = useState<Object>([]);
   return (
     <resContext.Provider value={{ value, setValue }}>
@@ -20,4 +27,10 @@ export const ResProvider = ({ children }) => {
 };
 
 // export { resContext, resProvider };
-export const useResContext = () => useContext(resContext);
+export const useResContext = () => {
+  const context = useContext(resContext);
+  if (!context) {
+    throw new Error('useMyContext must be used within a ResProvider');
+  }
+  return context;
+};
