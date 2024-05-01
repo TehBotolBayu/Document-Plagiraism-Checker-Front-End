@@ -7,11 +7,6 @@ button, .button{
   hover:bg-darkb
 }
 
-input[type="file"] {
-  @apply bg-medb text-white py-2 px-4 rounded-lg 
-  hover:bg-darkb
-}
-
 .tab > div{
   @apply font-bold px-2 py-2 md:px-4
 }

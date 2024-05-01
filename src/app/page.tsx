@@ -113,17 +113,23 @@ export default function Home() {
           </Box>:
           <>
           <div className="px-5 flex flex-col justify-center items-center">
-            <h1 className="my-14 text-center font-bold text-xl">Perbandingan Dua Data Teks Menggunakan Algoritma Rabin Karp dan Rolling Hash. Upload dokumen dalam format txt, pdf, atau word</h1>
+            <h1 className="my-14 text-center font-bold text-xl">Perbandingan Dua Data Teks Menggunakan Algoritma Rabin Karp dan Rolling Hash. Upload dokumen dalam format pdf</h1>
             {/* <button onClick={() => {setValue(value+1)}}>click me</button> */}
             {/* <p>{value}</p> */}
             <div className="md:flex">
               <div className="rounded-lg bg-gray-300 h-[500px] w-[80vw]
               md:w-[400px] md:mx-14 flex justify-center items-center mb-10 md:mb-0">
-                <input type="file" onChange={handleChange}/>
+                <label className="button inline-block cursor-pointer ">
+                  <input type="file" onChange={handleChange} className="hidden" placeholder="ad"/>
+                  {(!value[0].filenamea)?"Upload File":value[0].filenamea}
+                </label>
               </div>
               <div className="rounded-lg bg-gray-300 h-[500px] w-[80vw]
               md:w-[400px] md:mx-14 flex justify-center items-center">
-                <input type="file" onChange={handleChanges}/>
+                <label className="button inline-block cursor-pointer ">
+                  <input type="file" onChange={handleChanges} className="hidden" placeholder="ad"/>
+                  {(!value[1].filenameb)?"Upload File":value[1].filenameb}
+                </label>
               </div>
             </div>
             <button onClick={uploadFile} className="my-14">Bandingkan</button>
@@ -133,7 +139,7 @@ export default function Home() {
         </>
       )
     } else {
-      return <Hasil/>
+      return <Hasil ren={setMode}/>
     }
   }
   

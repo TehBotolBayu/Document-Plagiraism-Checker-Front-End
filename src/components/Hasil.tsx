@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ResProvider, useResContext } from "@/context/resContext";
 
 
-function Hasil() {
+function Hasil({ren}) {
   // const hasil = useContext(hasilContext);
   const router = useRouter();
   const [tab, settab] = React.useState('hasil');
@@ -104,7 +104,7 @@ function Hasil() {
               <PercentageCircle value={parseFloat(parseFloat(value[2].kesamaan).toFixed(2))} />
             </div>
             <div className='text-center md:text-left text-white font-semibold'>Dokumen anda terdeteksi {value[1].kesamaan}<span className={style}>{level}</span>
-              <button onClick={() => router.push("/")} className='bg-white text-darkb mt-2 block'>Bandingkan Lagi</button>
+              <button onClick={() => ren("home")} className='bg-white text-darkb mt-2 block'>Bandingkan Lagi</button>
             </div>
         </div>
         <div className='tab rounded-t-lg w-full h-[50px] border flex'>
