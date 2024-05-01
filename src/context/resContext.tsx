@@ -1,5 +1,6 @@
 'use client'
 
+import { AppContext } from 'next/app';
 import React, { createContext, useContext, useState } from 'react';
 
 // type resContextType = {
@@ -7,7 +8,7 @@ import React, { createContext, useContext, useState } from 'react';
 // }
 
 
-const resContext = createContext();
+const resContext = createContext<AppContext|undefined>(undefined);
 
 export const ResProvider = ({ children }) => {
   const [value, setValue] = useState<Object>([]);

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useEffect, useContext, createContext } from 'react'
 import PercentageCircle from "./PercentageCirlce"
