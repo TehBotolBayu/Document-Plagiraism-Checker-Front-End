@@ -121,14 +121,14 @@ export default function Home() {
               md:w-[400px] md:mx-14 flex justify-center items-center mb-10 md:mb-0">
                 <label className="button inline-block cursor-pointer ">
                   <input type="file" onChange={handleChanges} className="hidden" placeholder="ad"/>
-                  {(!value[0])?"Upload Dokumen Anda":value[0].filenamea}
+                  {(!value[1])?"Upload Dokumen Anda": value[1].filenameb}
                 </label>
               </div>
               <div className="rounded-lg bg-gray-300 h-[500px] w-[80vw]
               md:w-[400px] md:mx-14 flex justify-center items-center">
                 <label className="button inline-block cursor-pointer ">
                   <input type="file" onChange={handleChange} className="hidden" placeholder="ad"/>
-                  {(!value[1])?"Upload Dokumen Pembanding":value[1].filenameb}
+                  {(!value[0])?"Upload Dokumen Pembanding": value[0].filenamea}
                 </label>
               </div>
             </div>
